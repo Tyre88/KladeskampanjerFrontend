@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     </head>
-    <body ng-controller="index" md-theme="pink">
+    <body ng-controller="index" class="md-default-theme">
 
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -48,7 +48,7 @@
                 </div>
                 <span class="fa fa-bars button menu" ng-click="IsMenuOpen = !IsMenuOpen"></span>
             </h1>
-            <md-tabs md-no-ink md-selected="SelectedIndex">
+            <md-tabs md-no-ink md-selected="SelectedIndex" class="md-default-theme">
                 <md-tab ui-sref="home">Hem</md-tab>
                 <md-tab ui-sref="information">Information</md-tab>
                 <md-tab ui-sref="woman">Kvinna</md-tab>

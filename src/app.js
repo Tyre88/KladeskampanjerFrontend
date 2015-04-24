@@ -31,6 +31,12 @@ define(
 		catch(err)
 		{
 			return angular.module('kladeskampanjer', ['ng', 'ui.router', 'ui.bootstrap', 'ngMaterial'])
+                .config(function($mdThemingProvider)
+                {
+                    $mdThemingProvider.theme('default')
+                        .primaryPalette('pink')
+                        .accentPalette('orange');
+                })
 				.directive('whenScrolled', [function()
 				{
 					return {
