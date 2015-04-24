@@ -18,16 +18,18 @@
         <md-sidenav md-is-open="IsMenuOpen" class="md-sidenav-right navigation">
             <md-content class="md-padding">
                 <h3>Inställningar</h3>
-                <md-checkbox ng-model="SaleOnly" aria-label="Rea" md-no-ink>Rea</md-checkbox>
-                <select ng-model="SelectedShop">
-                    <option value="all">Alla</option>
-                    <option ng-repeat="shop in Shops" value="{{shop}}">{{shop}}</option>
-                </select>
+                <md-checkbox ng-model="SaleOnly" aria-label="Rea" md-no-ink class="md-primary">Rea</md-checkbox>
 
-                <select ng-model="SelectedCategory">
-                    <option value="all">Alla</option>
-                    <option ng-repeat="category in Categories" value="{{category}}">{{category}}</option>
-                </select>
+                <md-select ng-model="SelectedShop">
+                    <md-option value="all">Alla butiker</md-option>
+                    <md-option ng-repeat="shop in Shops" value="{{shop}}">{{shop}}</md-option>
+                </md-select>
+
+                <md-select ng-model="SelectedCategory">
+                    <md-option value="all">Alla kategorier</md-option>
+                    <md-option ng-repeat="category in Categories" value="{{category}}">{{category}}</md-option>
+                </md-select>
+
                 <md-button class="md-raised md-primary" ng-click="IsMenuOpen = false;" aria-label="Klar">Klar</md-button>
 
                 <h3>Önskelista</h3>
@@ -35,35 +37,39 @@
                     <img src="content/images/wishlist.png" class="wishlistImage" alt="Önskelista"/>
                     <span class="wishlistCount">{{GetWishlistCount()}}</span>
                 </div>
-            </md-content>
-        </md-sidenav>
 
-        <div class="container">
-            <h1>
-                Klädeskampanjer
                 <div class="social">
                     <div class="fb-like" data-href="https://www.facebook.com/Kladeskampanjer" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
                     <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kladeskampanjer.se" data-text="Här har jag hittat en massa billiga kläder, kolla du med!" data-size="large" data-count="none">Tweet</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                 </div>
+            </md-content>
+        </md-sidenav>
+
+        <div class="container" layout="column" layout-fill>
+            <h1>
+                Klädeskampanjer
                 <span class="fa fa-bars button menu" ng-click="IsMenuOpen = !IsMenuOpen"></span>
             </h1>
-            <md-tabs md-no-ink md-selected="SelectedIndex" class="md-default-theme">
-                <md-tab ui-sref="home">Hem</md-tab>
-                <md-tab ui-sref="information">Information</md-tab>
-                <md-tab ui-sref="woman">Kvinna</md-tab>
-                <md-tab ui-sref="man">Man</md-tab>
-            </md-tabs>
 
-            <md-content class="content-container md-whiteframe-z1" when-scrolled="LoadProducts()" ui-view layout-padding></md-content>
+            <md-toolbar md-scroll-shrink>
+                <div class="md-toolbar-tools">
+                    <md-tabs md-no-ink md-selected="SelectedIndex" class="md-default-theme md-primary">
+                        <md-tab><a ui-sref="home">Hem</a></md-tab>
+                        <md-tab><a ui-sref="information">Information</a></md-tab>
+                        <md-tab><a ui-sref="woman">Kvinna</a></md-tab>
+                        <md-tab><a ui-sref="man">Man</a></md-tab>
+                    </md-tabs>
+                </div>
+            </md-toolbar>
+
+            <md-content class="content-container md-whiteframe-z1" when-scrolled="LoadProducts()" ui-view></md-content>
         </div>
     </body>
     <link rel="stylesheet" href="dependencies/angular-material/angular-material.min.css" />
-    <link rel="stylesheet" href="dependencies/angular-material/themes/pink-theme.css" />
     <link rel="stylesheet" href="content/css/stylesheet.css" />
     <link rel="stylesheet" href="content/css/font-awesome.min.css" />
 
-    <script src="dependencies/hammerjs/hammer.min.js"></script>
     <script src="dependencies/dependencyconfig.js"></script>
     <script src="dependencies/require/require.min.js" data-main="bootstrap.js"></script>
 

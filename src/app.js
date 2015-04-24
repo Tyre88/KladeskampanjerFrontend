@@ -70,7 +70,7 @@ define(
 				.controller('index', ["$scope", "$state", "productService", "wishlistService", function($scope, $state, productService, wishlistService)
 				{
 					$scope.SelectedIndex = 0;
-					$scope.SaleOnly = true;
+					$scope.SaleOnly = false;
 					$scope.Shops = [];
 					$scope.Categories = [];
 
