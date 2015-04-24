@@ -1,0 +1,4 @@
+This is a template for creating a new frontend part with angularjs, requirejs
+
+1. npm install
+2. grunt

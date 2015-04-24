@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    </head>
+    <body ng-controller="index" md-theme="pink">
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&appId=597242886974329&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+        <md-sidenav md-is-open="IsMenuOpen" class="md-sidenav-right navigation">
+            <md-content class="md-padding">
+                <h3>Inställningar</h3>
+                <md-checkbox ng-model="SaleOnly" aria-label="Rea" md-no-ink>Rea</md-checkbox>
+                <select ng-model="SelectedShop">
+                    <option value="all">Alla</option>
+                    <option ng-repeat="shop in Shops" value="{{shop}}">{{shop}}</option>
+                </select>
+
+                <select ng-model="SelectedCategory">
+                    <option value="all">Alla</option>
+                    <option ng-repeat="category in Categories" value="{{category}}">{{category}}</option>
+                </select>
+                <md-button class="md-raised md-primary" ng-click="IsMenuOpen = false;" aria-label="Klar">Klar</md-button>
+
+                <h3>Önskelista</h3>
+                <div class="wishlist" ng-click="GoToWishlist()">
+                    <img src="content/images/wishlist.png" class="wishlistImage" alt="Önskelista"/>
+                    <span class="wishlistCount">{{GetWishlistCount()}}</span>
+                </div>
+            </md-content>
+        </md-sidenav>
+
+        <div class="container">
+            <h1>
+                Klädeskampanjer
+                <div class="social">
+                    <div class="fb-like" data-href="https://www.facebook.com/Kladeskampanjer" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kladeskampanjer.se" data-text="Här har jag hittat en massa billiga kläder, kolla du med!" data-size="large" data-count="none">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                </div>
+                <span class="fa fa-bars button menu" ng-click="IsMenuOpen = !IsMenuOpen"></span>
+            </h1>
+            <md-tabs md-no-ink md-selected="SelectedIndex">
+                <md-tab ui-sref="home">Hem</md-tab>
+                <md-tab ui-sref="information">Information</md-tab>
+                <md-tab ui-sref="woman">Kvinna</md-tab>
+                <md-tab ui-sref="man">Man</md-tab>
+            </md-tabs>
+
+            <md-content class="content-container md-whiteframe-z1" when-scrolled="LoadProducts()" ui-view layout-padding></md-content>
+        </div>
+    </body>
+    <link rel="stylesheet" href="dependencies/angular-material/angular-material.min.css" />
+    <link rel="stylesheet" href="dependencies/angular-material/themes/pink-theme.css" />
+    <link rel="stylesheet" href="content/css/stylesheet.css" />
+    <link rel="stylesheet" href="content/css/font-awesome.min.css" />
+
+    <script src="dependencies/hammerjs/hammer.min.js"></script>
+    <script src="dependencies/dependencyconfig.js"></script>
+    <script src="dependencies/require/require.min.js" data-main="bootstrap.js"></script>
+
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-29501390-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</html>

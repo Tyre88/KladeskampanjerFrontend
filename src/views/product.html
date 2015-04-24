@@ -1,0 +1,6 @@
+<img src="{{::ngModel.ImgURL}}" alt="{{::ngModel.Name}}" />
+<span ng-if="WishlistRemove" class="fa fa-close productWishRemove" ng-click="RemoveFromWishlist(); $event.stopPropagation();"></span>
+<h3>{{::ngModel.Name}}</h3>
+<span class="productPrice" ng-class="{'productOnSale': ngModel.IsOnSale}">{{::ngModel.Price}}kr</span>
+<span class="productShop" ng-bind="::ngModel.ShopName"></span>
+<span class="productWish" ng-class="{'productWishAdded': IsInWishlist()}" ng-click="AddToWishlist(); $event.stopPropagation();"></span>

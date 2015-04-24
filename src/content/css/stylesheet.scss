@@ -1,0 +1,211 @@
+$break-mobile: 800px;
+$font-color: #f8bbd0;
+$font-color-dark: #e91e63;
+
+html, body
+{
+	overflow: hidden;
+}
+
+.container
+{
+	max-width: 960px;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+
+	h2
+	{
+		text-align: center;
+	}
+}
+
+.content-container
+{
+	flex-wrap: wrap;
+	width: 100%;
+	height: calc(100% - 138px);
+  	margin-top: 10px;
+}
+
+product
+{
+	border: 1px dotted #f8bbd0;
+	display: inline-block;
+	width: 33%;
+	margin: .15%;
+	height: 350px;
+	border-radius: 10px;
+	text-align: center;
+	background-color: #FCE4EC;
+
+	@media screen and (max-width: $break-mobile)
+	{
+		width: 100%;
+		margin: 1px 0;
+		height: 450px;
+	}
+
+	img
+	{
+		max-height: 250px;
+		border-radius: 10px;
+
+		@media screen and (max-width: $break-mobile)
+		{
+			max-height: 350px;
+		}
+	}
+
+	&:hover
+	{
+		cursor: pointer;
+	}
+
+	.productOnSale
+	{
+		color: red;
+	}
+}
+
+.button
+{
+	&:hover
+	{
+		cursor: pointer;
+	}
+}
+
+.navigation
+{
+	select
+	{
+		display: block;
+		margin-left: 15px;
+		background-color: #e91e63;
+		color: $font-color;
+		min-width: 150px;
+		margin-bottom: 15px;
+	}
+
+	button
+	{
+		margin-left: 15px;
+	}
+}
+
+.wishlist
+{
+	position: relative;
+	display: inline-block;
+
+	&:hover
+	{
+		cursor: pointer;
+	}
+
+	.wishlistImage
+	{
+		max-height: 85px;
+	}
+
+	.wishlistCount
+	{
+		position: absolute;
+		left: 55px;
+		top: 40px;
+		color: $font-color-dark;
+	}
+}
+
+.menu
+{
+	float: right;
+	margin-right: 20px;
+	display: inline-block;
+
+	@media screen and (min-width: 1200px)
+	{
+		/*display: none !important;*/
+	}
+}
+
+product
+{
+	position: relative;
+}
+
+.productPrice,
+.productShop
+{
+	float: left;
+	margin-left: 15px;
+}
+
+.productShop
+{
+	font-weight: bold;
+}
+
+.productWish
+{
+	float: right;
+	margin-right: 15px;
+	background-image: url('/content/images/wishlistSprite.png');
+	width: 64px;
+	height: 32px;
+	display: block;
+	background-repeat: no-repeat;
+
+	&:hover
+	{
+		background-position: -62px 0px;
+	}
+}
+
+.productWishAdded
+{
+	background-image: url('/content/images/wishlistAdded.png');
+
+	&:hover
+	{
+		background-position: 0;
+		cursor: default;
+	}
+}
+
+.productWishRemove
+{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+
+	&:before
+	{
+		font-size: 150%;
+	}
+}
+
+.information
+{
+	width: 100%;
+	padding: 20px 50px;
+
+	textarea
+	{
+		display: block;
+		margin-bottom: 15px;
+		width: 195px;
+	}
+}
+
+.social
+{
+	margin-left: 50px;
+	display: inline-block;
+
+	@media screen and (max-width: $break-mobile)
+	{
+		margin-left: 0;
+	}
+}

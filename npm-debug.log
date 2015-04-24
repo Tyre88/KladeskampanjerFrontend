@@ -1,0 +1,71 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '--save-dev',
+1 verbose cli   'grunt-uglify' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn package.json Fooding@0.0.1 No repository field.
+6 warn package.json Fooding@0.0.1 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'grunt-uglify', null ]
+9 verbose cache add name=undefined spec="grunt-uglify" args=["grunt-uglify",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'grunt-uglify',
+10 verbose parsed url   path: 'grunt-uglify',
+10 verbose parsed url   href: 'grunt-uglify' }
+11 silly lockFile 2e33d944-grunt-uglify grunt-uglify
+12 verbose lock grunt-uglify C:\Users\Victor\AppData\Roaming\npm-cache\2e33d944-grunt-uglify.lock
+13 silly lockFile 2e33d944-grunt-uglify grunt-uglify
+14 silly lockFile 2e33d944-grunt-uglify grunt-uglify
+15 verbose addNamed [ 'grunt-uglify', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 1cbe4847-grunt-uglify grunt-uglify@
+18 verbose lock grunt-uglify@ C:\Users\Victor\AppData\Roaming\npm-cache\1cbe4847-grunt-uglify.lock
+19 silly addNameRange { name: 'grunt-uglify', range: '*', hasData: false }
+20 verbose url raw grunt-uglify
+21 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-uglify' ]
+22 verbose url resolved https://registry.npmjs.org/grunt-uglify
+23 info trying registry request attempt 1 at 17:12:12
+24 http GET https://registry.npmjs.org/grunt-uglify
+25 http 404 https://registry.npmjs.org/grunt-uglify
+26 silly registry.get cb [ 404,
+26 silly registry.get   { date: 'Sun, 28 Dec 2014 16:11:30 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=0',
+26 silly registry.get     'content-length': '52',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-fra1226-FRA',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1419783090.620458,VS0,VE174',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly lockFile 1cbe4847-grunt-uglify grunt-uglify@
+28 silly lockFile 1cbe4847-grunt-uglify grunt-uglify@
+29 error 404 'grunt-uglify' is not in the npm registry.
+29 error 404 You should bug the author to publish it
+29 error 404 It was specified as a dependency of 'Fooding'
+29 error 404
+29 error 404 Note that you can also install from a
+29 error 404 tarball, folder, or http url, or git url.
+30 error System Windows_NT 6.1.7601
+31 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--save-dev" "grunt-uglify"
+32 error cwd D:\DropBox\Dropbox\utveckling\KlädeskampanjerV3
+33 error node -v v0.10.26
+34 error npm -v 1.4.3
+35 error code E404
+36 verbose exit [ 1, true ]
