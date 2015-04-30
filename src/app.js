@@ -261,6 +261,16 @@ define(
 						return $scope.Wishlist.GUID == wishlistService.WishList.GUID;
 					};
 				}])
+				.controller('product-bottom-sheet', ["$scope",
+				function($scope)
+				{
+					$scope.items = [
+						{ name: 'Önskelista', icon: 'productWish' },
+						{ name: 'Facebook', icon: '' },
+						{ name: 'Twitter', icon: '' },
+						{ name: 'Dela', icon: '' }
+					];
+				}])
 				.config([
 					"$compileProvider",
 					"$httpProvider",

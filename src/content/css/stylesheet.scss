@@ -192,6 +192,24 @@ product
 	font-weight: bold;
 }
 
+.sheet-button
+{
+	position: relative;
+}
+
+.sheet-button.productWish:before
+{
+	position: absolute;
+	content: '';
+	background-image: url('/content/images/wishlistSprite.png');
+	width: 64px;
+	height: 32px;
+	display: block;
+	top: 0;
+	left: 13px;
+	background-repeat: no-repeat;
+}
+
 .productWish
 {
 	float: right;

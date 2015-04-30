@@ -1,0 +1,13 @@
+<md-bottom-sheet class="md-grid">
+    <md-list>
+        <md-list-item ng-repeat="item in items">
+            <md-button class="md-fab" aria-label="Eat cake">
+                <div class="md-grid-text sheet-button {{item.icon}}">
+                    <md-tooltip>
+                        {{ item.name }}
+                    </md-tooltip>
+                </div>
+            </md-button>
+        </md-list-item>
+    </md-list>
+</md-bottom-sheet>

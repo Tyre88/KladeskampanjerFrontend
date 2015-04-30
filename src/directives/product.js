@@ -4,7 +4,7 @@ define(
 	],
 	function(app)
 	{
-		app.directive('product', ["wishlistService", function(wishlistService)
+		app.directive('product', ["wishlistService", "$mdBottomSheet", function(wishlistService, $mdBottomSheet)
 		{
 			return {
 				restrict: "E",
@@ -37,6 +37,15 @@ define(
 					scope.IsInWishlist = function()
 					{
 						return wishlistService.InWishlist(scope.ngModel);
+					};
+
+					scope.ShowBottomSheet = function($event)
+					{
+						$mdBottomSheet.show({
+							targetEvent: $event,
+							templateUrl: "views/product-bottom-sheet.html",
+							controller: "product-bottom-sheet"
+						})
 					};
 				}
 			};
