@@ -1,10 +1,19 @@
 $break-mobile: 800px;
+$break-menu: 1600px;
 $font-color: #f8bbd0;
 $font-color-dark: #e91e63;
 
 html, body
 {
 
+}
+
+md-sidenav
+{
+	@media screen and (min-width: $break-menu)
+	{
+		position: absolute !important;
+	}
 }
 
 md-tabs
@@ -165,13 +174,15 @@ product
 
 .menu
 {
-	float: right;
-	margin-right: 20px;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	z-index: 59;
 	display: inline-block;
 
-	@media screen and (min-width: 1200px)
+	@media screen and (min-width: $break-menu)
 	{
-		/*display: none !important;*/
+		display: none !important;
 	}
 }
 

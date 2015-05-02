@@ -15,7 +15,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
-        <md-sidenav md-is-open="IsMenuOpen" class="md-sidenav-right navigation">
+        <md-sidenav md-is-open="IsMenuOpen" class="md-sidenav-left navigation" md-is-locked-open="$mdMedia('gt-md')">
             <md-content class="md-padding">
                 <h3>Inställningar</h3>
                 <md-checkbox ng-model="SaleOnly" aria-label="Rea" md-no-ink class="md-primary">Rea</md-checkbox>
@@ -47,9 +47,15 @@
         </md-sidenav>
 
         <div class="container" layout="column" layout-fill>
+
+            <div class="menu">
+                <md-button class="md-fab" ng-click="IsMenuOpen = !IsMenuOpen">
+                    <span class="fa fa-bars button"></span>
+                </md-button>
+            </div>
+
             <h1>
                 Klädeskampanjer
-                <span class="fa fa-bars button menu" ng-click="IsMenuOpen = !IsMenuOpen"></span>
             </h1>
 
             <md-toolbar md-scroll-shrink>
