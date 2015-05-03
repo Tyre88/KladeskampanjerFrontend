@@ -10,6 +10,8 @@ define(
 			var ManCategories = undefined;
 			var WomanCategories = undefined;
 
+			this.ActiveProduct = {};
+
 			this.GetRandom = function(genderType)
 			{
 				switch (genderType)

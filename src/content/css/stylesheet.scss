@@ -5,7 +5,7 @@ $font-color-dark: #e91e63;
 
 html, body
 {
-
+	overflow: hidden;
 }
 
 md-sidenav
@@ -82,7 +82,7 @@ product
 	{
 		width: calc(50% - 8px);
 		margin: 1px 2px;
-		height: 375px;
+		height: 400px;
 		-ms-text-overflow: ellipsis;
 		text-overflow: ellipsis;
 
@@ -115,11 +115,11 @@ product
 	{
 		cursor: pointer;
 	}
+}
 
-	.productOnSale
-	{
-		color: red;
-	}
+.productOnSale
+{
+	color: red;
 }
 
 .button
@@ -216,36 +216,25 @@ product
 	width: 64px;
 	height: 32px;
 	display: block;
-	top: 0;
-	left: 13px;
+	top: -10px;
+	left: -8px;
 	background-repeat: no-repeat;
 }
 
-.productWish
+.sheet-button.productWish:hover:before
 {
-	float: right;
-	margin-right: 15px;
-	background-image: url('/content/images/wishlistSprite.png');
-	width: 64px;
-	height: 32px;
-	display: block;
-	background-repeat: no-repeat;
-
-	&:hover
-	{
-		background-position: -62px 0px;
-	}
+	background-position: -62px 0;
 }
 
-.productWishAdded
+.sheet-button.productWishAdded:before
 {
 	background-image: url('/content/images/wishlistAdded.png');
+}
 
-	&:hover
-	{
-		background-position: 0;
-		cursor: default;
-	}
+.sheet-button.productWishAdded:hover:before
+{
+	background-position: 0;
+	cursor: default;
 }
 
 .productWishRemove
@@ -271,6 +260,11 @@ product
 		margin-bottom: 15px;
 		width: 195px;
 	}
+
+	md-input-container
+	{
+		width: 195px;
+	}
 }
 
 .social
@@ -282,4 +276,109 @@ product
 	{
 		margin-left: 0;
 	}
+}
+
+.product-info-mobile
+{
+	display: none;
+
+	@media screen and (max-width: $break-mobile)
+	{
+		display: inline-block;
+	}
+}
+
+.product-info-desktop
+{
+	@media screen and (max-width: $break-mobile)
+	{
+		display: none !important;
+	}
+}
+
+.single-product
+{
+	display: flex;
+	flex-direction: row;
+
+	.single-product-information
+	{
+		display: flex;
+		flex-direction: column;
+		max-width: 300px;
+		margin-left: 25px;
+
+		> *
+		{
+			margin-bottom: 15px;
+		}
+	}
+
+	.single-product-share-area
+	{
+		text-align: center;
+
+		md-list
+		{
+			display: flex;
+		}
+	}
+
+	@media screen and (max-width: $break-mobile)
+	{
+		text-align: center;
+		flex-direction: column;
+	}
+
+	.single-product-image
+	{
+		border-radius: 10px;
+
+		@media screen and (max-width: $break-mobile)
+		{
+			max-height: 350px;
+			max-width: 100%;
+			display: block;
+			margin: 0 auto;
+			margin-top: 15px;
+		}
+	}
+
+	.productPrice
+	{
+		display: block;
+		text-align: center;
+	}
+
+	.single-product-shop-name
+	{
+		color: #818181;
+		display: block;
+		text-align: left;
+
+		@media screen and (max-width: $break-mobile) {
+			padding: 10px 25px;
+		}
+	}
+
+	.single-product-shop-image
+	{
+		height: 25px;
+	}
+}
+
+.single-product-header
+{
+	margin: 0 !important;
+}
+
+.wishlist-share
+{
+	float: right;
+}
+
+md-list.bottom-sheet-list
+{
+	display: flex !important;
+	flex-wrap: nowrap !important;
 }

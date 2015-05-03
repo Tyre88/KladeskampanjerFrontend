@@ -1,13 +1,44 @@
 <md-bottom-sheet class="md-grid">
-    <md-list>
-        <md-list-item ng-repeat="item in items">
-            <md-button class="md-fab">
-                <div class="md-grid-text sheet-button {{item.icon}}">
+    <md-list class="bottom-sheet-list">
+        <md-list-item>
+            <md-button class="md-fab" ng-click="AddToWishlist();" aria-label="Add to wishlist">
+                <div class="md-grid-text sheet-button productWish" ng-class="{'productWishAdded': IsInWishlist()}">
                     <md-tooltip>
-                        {{ item.name }}
+                        Lägg till i önskelista
                     </md-tooltip>
                 </div>
             </md-button>
         </md-list-item>
+
+        <md-list-item>
+            <md-button class="md-fab" ng-click="ShareOnFacebook();" aria-label="Facebook share">
+                <md-icon md-font-icon="fa-facebook-square" class="md-grid-text sheet-button fa" ng-style="{ 'font-size': '45px', 'margin-left': '-10px', 'margin-top': '-10px' }">
+                    <md-tooltip>
+                        Dela på facebook
+                    </md-tooltip>
+                </md-icon>
+            </md-button>
+        </md-list-item>
+
+        <!--<md-list-item>
+            <md-button class="md-fab">
+                <md-icon md-font-icon="fa-twitter-square" class="md-grid-text sheet-button fa" ng-style="{ 'font-size': '45px', 'margin-left': '-10px', 'margin-top': '-10px' }">
+                    <md-tooltip>
+                        Dela på twitter
+                    </md-tooltip>
+                </md-icon>
+            </md-button>
+        </md-list-item>-->
+
+        <md-list-item>
+            <md-button class="md-fab" ng-click="GoToProduct()" aria-label="Product information">
+                <md-icon md-font-icon="fa-info-circle" class="md-grid-text sheet-button fa" ng-style="{ 'font-size': '45px', 'margin-left': '-10px', 'margin-top': '-10px' }">
+                    <md-tooltip>
+                        Mer information om produkten
+                    </md-tooltip>
+                </md-icon>
+            </md-button>
+        </md-list-item>
+
     </md-list>
 </md-bottom-sheet>

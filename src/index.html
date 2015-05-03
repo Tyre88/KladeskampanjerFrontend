@@ -3,8 +3,40 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <!-- FB META -->
+        <meta property="og:locale" content="sv_SE" />
+        <meta property="og:title"
+              content="Klädeskampanjer" />
+        <meta property="og:url"
+              content="http://klädeskampanjer.se" />
+        <meta property="article:author" content="https://www.facebook.com/victor.ohrstrom" />
+        <meta property="article:publisher" content="https://www.facebook.com/Kladeskampanjer" />
+        <meta property="fb:app_id" content="900972389960054" />
+        <meta property="og:description" content="Samling av billiga kläder på nätet. Vårt mål är att det är hit du ska gå när du vill shoppa billiga och snygga kläder." />
+        <!-- END FB META -->
+
+
     </head>
     <body ng-controller="index" class="md-default-theme">
+
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '900972389960054',
+                xfbml      : true,
+                version    : 'v2.3'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -49,7 +81,7 @@
         <div class="container" layout="column" layout-fill>
 
             <div class="menu">
-                <md-button class="md-fab" ng-click="IsMenuOpen = !IsMenuOpen">
+                <md-button class="md-fab" ng-click="IsMenuOpen = !IsMenuOpen" aria-label="Meny">
                     <span class="fa fa-bars button"></span>
                 </md-button>
             </div>

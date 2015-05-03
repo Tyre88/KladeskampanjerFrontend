@@ -1,3 +1,7 @@
+require.config({
+    urlArgs: "v=0.1"
+});
+
 require(
     [
         "angular",

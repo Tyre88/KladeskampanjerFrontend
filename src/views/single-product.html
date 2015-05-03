@@ -1,0 +1,53 @@
+<section>
+    <md-subheader class="md-primary single-product-header">
+        <h2>{{::Product.Name}}</h2>
+    </md-subheader>
+    <div class="single-product md-whiteframe-z1">
+        <img class="single-product-image" src="{{::Product.ImgURL}}" alt="{{::Product.Name}}"/>
+        <div class="single-product-information">
+            <span class="productPrice" ng-class="{'productOnSale': Product.IsOnSale}">{{::Product.Price}}kr</span>
+            <div class="single-product-description">
+                {{::Product.Description}}
+            </div>
+            <div>
+                <img class="single-product-shop-image" ng-if="Product.ShopImage" src="{{Product.ShopImage}}" alt="{{Product.ShopName}}"/>
+                <span class="single-product-shop-name" ng-if="!Product.ShopImage">{{Product.ShopName}}</span>
+            </div>
+        </div>
+
+        <div class="single-product-share-area">
+            <md-list>
+                <md-list-item>
+                    <md-button class="md-fab" ng-click="AddToWishlist();" aria-label="Add to wishlist">
+                        <div class="md-grid-text sheet-button productWish" ng-class="{'productWishAdded': IsInWishlist()}">
+                            <md-tooltip>
+                                Lägg till i önskelista
+                            </md-tooltip>
+                        </div>
+                    </md-button>
+                </md-list-item>
+
+                <md-list-item>
+                    <md-button class="md-fab" ng-click="ShareOnFacebook();" aria-label="Share on facebook">
+                        <md-icon md-font-icon="fa-facebook-square" class="md-grid-text sheet-button fa" ng-style="{ 'font-size': '45px', 'margin-left': '-13px', 'margin-top': '-20px' }">
+                            <md-tooltip>
+                                Dela på facebook
+                            </md-tooltip>
+                        </md-icon>
+                    </md-button>
+                </md-list-item>
+
+                <!--<md-list-item>
+                    <md-button class="md-fab">
+                        <md-icon md-font-icon="fa-twitter-square" class="md-grid-text sheet-button fa" ng-style="{ 'font-size': '45px', 'margin-left': '-10px', 'margin-top': '-10px' }">
+                            <md-tooltip>
+                                Dela på twitter
+                            </md-tooltip>
+                        </md-icon>
+                    </md-button>
+                </md-list-item>-->
+
+            </md-list>
+        </div>
+    </div>
+</section>

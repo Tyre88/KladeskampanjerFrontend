@@ -4,7 +4,7 @@ define(
 	],
 	function(app)
 	{
-		app.directive('product', ["wishlistService", "$mdBottomSheet", function(wishlistService, $mdBottomSheet)
+		app.directive('product', ["wishlistService", "productService", "$mdBottomSheet", function(wishlistService, productService, $mdBottomSheet)
 		{
 			return {
 				restrict: "E",
@@ -21,26 +21,15 @@ define(
 						window.open(scope.ngModel.ProductLink, '_blank');
 					});
 
-					scope.AddToWishlist = function()
-					{
-						if(!scope.IsInWishlist())
-						{
-							wishlistService.Add(scope.ngModel);
-						}
-					};
-
 					scope.RemoveFromWishlist = function()
 					{
 						wishlistService.Delete(scope.ngModel);
 					};
 
-					scope.IsInWishlist = function()
-					{
-						return wishlistService.InWishlist(scope.ngModel);
-					};
-
 					scope.ShowBottomSheet = function($event)
 					{
+						productService.ActiveProduct = scope.ngModel;
+
 						$mdBottomSheet.show({
 							targetEvent: $event,
 							templateUrl: "views/product-bottom-sheet.html",

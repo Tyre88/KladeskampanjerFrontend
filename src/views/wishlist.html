@@ -1,1 +1,13 @@
+<md-toolbar>
+    <h2>
+        Önskelista
+        <md-button class="md-fab wishlist-share" ng-click="ShareOnFacebook();" aria-label="Facebook share">
+            <md-icon md-font-icon="fa-facebook-square" class="md-grid-text sheet-button fa" ng-style="{ 'font-size': '45px', 'margin-left': '-13px', 'margin-top': '-20px' }">
+                <md-tooltip>
+                    Dela på facebook
+                </md-tooltip>
+            </md-icon>
+        </md-button>
+    </h2>
+</md-toolbar>
 <product ng-repeat="product in Wishlist.Products" ng-model="product" wishlist-remove="IsMyWishList()"></product>

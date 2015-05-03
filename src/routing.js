@@ -40,6 +40,12 @@ define(
 							url: "/wishlist/:guid",
 							templateUrl: "views/wishlist.html",
 							controller: "wishlist"
+						})
+						.state('product',
+						{
+							url: '/product/:id',
+							templateUrl: "views/single-product.html",
+							controller: "show-product"
 						});
                 }
 			]

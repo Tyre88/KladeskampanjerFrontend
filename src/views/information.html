@@ -8,7 +8,14 @@
 
     <h2>Kontakta oss</h2>
 
-    <md-text-float label="E-post" ng-model="Email"></md-text-float>
-    <textarea placeholder="Meddelande" ng-model="Message" rows="5"></textarea>
+    <md-input-container>
+        <label>E-post</label>
+        <input ng-model="Email">
+    </md-input-container>
+
+    <md-input-container>
+        <label>Meddelande</label>
+        <textarea ng-model="Message" rows="5"></textarea>
+    </md-input-container>
     <md-button class="md-raised md-primary md-button md-pink-theme" md-no-ink ng-click="Send()">Skicka</md-button>
 </div>

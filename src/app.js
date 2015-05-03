@@ -247,6 +247,48 @@ define(
 
 					$scope.LoadProducts();
 				}])
+				.controller('show-product', ["$scope", "$state", "productService", "wishlistService", function($scope, $state, productService, wishlistService)
+				{
+					$scope.ProductId = $state.params["id"];
+					$scope.Product = {};
+
+					productService.GetProduct($scope.ProductId).success(function(data)
+					{
+						$scope.Product = data;
+					});
+
+					$scope.AddToWishlist = function()
+					{
+						if(!$scope.IsInWishlist())
+						{
+							wishlistService.Add($scope.Product);
+
+							$mdToast.show(
+								$mdToast.simple()
+									.content('Produkt tillagd i önskelista')
+									.position('bottom right')
+									.hideDelay(3000)
+							);
+						}
+					};
+
+					$scope.IsInWishlist = function()
+					{
+						return wishlistService.InWishlist($scope.Product);
+					};
+
+					$scope.ShareOnFacebook = function()
+					{
+						FB.ui({
+							method: 'feed',
+							link: 'http://klädeskampanjer.se/#/product/' + $scope.Product.ID,
+							caption: $scope.Product.Name,
+							picture: $scope.Product.ImgURL,
+							description: $scope.Product.Description,
+							app_id: 900972389960054
+						}, function(response){});
+					};
+				}])
 				.controller('wishlist', ["$scope", "$state", "wishlistService", function($scope, $state, wishlistService)
 				{
 					$scope.Wishlist = { GUID: "", Products: [] };
@@ -260,16 +302,67 @@ define(
 					{
 						return $scope.Wishlist.GUID == wishlistService.WishList.GUID;
 					};
+
+					$scope.ShareOnFacebook = function()
+					{
+						FB.ui({
+							method: 'feed',
+							link: 'http://klädeskampanjer.se/#/wishlist/' + $scope.Wishlist.GUID,
+							caption: 'Min önskelista',
+							picture: 'http://kladeskampanjer.se/content/images/wishlist.png',
+							description: 'Kolla in min önskelista på klädeskampanjer.se!',
+							app_id: 900972389960054
+						}, function(response){});
+					};
 				}])
-				.controller('product-bottom-sheet', ["$scope",
-				function($scope)
+				.controller('product-bottom-sheet', ["$scope", "$state", "wishlistService", "productService", "$mdToast",
+				function($scope, $state, wishlistService, productService, $mdToast)
 				{
+					$scope.ActiveProduct = productService.ActiveProduct;
+
 					$scope.items = [
 						{ name: 'Önskelista', icon: 'productWish' },
 						{ name: 'Facebook', icon: '' },
 						{ name: 'Twitter', icon: '' },
 						{ name: 'Dela', icon: '' }
 					];
+
+					$scope.GoToProduct = function()
+					{
+						$state.go("product", {id: productService.ActiveProduct.ID});
+					};
+
+					$scope.AddToWishlist = function()
+					{
+						if(!$scope.IsInWishlist())
+						{
+							wishlistService.Add($scope.ActiveProduct);
+
+							$mdToast.show(
+								$mdToast.simple()
+								.content('Produkt tillagd i önskelista')
+								.position('bottom right')
+								.hideDelay(3000)
+							);
+						}
+					};
+
+					$scope.IsInWishlist = function()
+					{
+						return wishlistService.InWishlist($scope.ActiveProduct);
+					};
+
+					$scope.ShareOnFacebook = function()
+					{
+						FB.ui({
+							method: 'feed',
+							link: 'http://klädeskampanjer.se/#/product/' + productService.ActiveProduct.ID,
+							caption: productService.ActiveProduct.Name,
+							picture: productService.ActiveProduct.ImgURL,
+							description: productService.ActiveProduct.Description,
+							app_id: 900972389960054
+						}, function(response){});
+					};
 				}])
 				.config([
 					"$compileProvider",

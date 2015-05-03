@@ -3,4 +3,7 @@
 <h3>{{::ngModel.Name}}</h3>
 <span class="productPrice" ng-class="{'productOnSale': ngModel.IsOnSale}">{{::ngModel.Price}}kr</span>
 <span class="productShop" ng-bind="::ngModel.ShopName"></span>
-<span class="productWish" ng-class="{'productWishAdded': IsInWishlist()}" ng-click="ShowBottomSheet($event); $event.stopPropagation();"></span>
+<md-button class="md-raised md-primary product-info-mobile" ng-click="::ShowBottomSheet($event); $event.stopPropagation();" aria-label="{{::ngModel.Name}}">
+    <span class="fa fa-info-circle"></span>
+</md-button>
+<span class="fa fa-info-circle product-info-desktop" ng-click="::ShowBottomSheet($event); $event.stopPropagation();"></span>
