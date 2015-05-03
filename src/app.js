@@ -137,7 +137,7 @@ define(
 					{
 						if($scope.Email != "" && $scope.Message != "")
 						{
-							$http.post("http://new.kladeskampanjer.se/api/contact/contactus", {email: $scope.Email, message: $scope.Message}).success(function(response)
+							$http.post("http://new.kladeskampanjer.se/api/Contact/contactus", {email: $scope.Email, message: $scope.Message}).success(function(response)
 							{
 								$mdToast.show($mdToast.simple().content("Meddelandet har skickats"));
 								$scope.Email = "";
@@ -291,6 +291,8 @@ define(
 				}])
 				.controller('wishlist', ["$scope", "$state", "wishlistService", function($scope, $state, wishlistService)
 				{
+					$scope.$parent.SelectedIndex = 4;
+
 					$scope.Wishlist = { GUID: "", Products: [] };
 					wishlistService.Get($state.params["guid"]).then(function(response)
 					{
