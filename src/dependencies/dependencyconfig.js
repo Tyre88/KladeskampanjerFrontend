@@ -9,9 +9,9 @@ var require =
             "ui-bootstrap": "dependencies/ui-bootstrap-tpls-0.11.0.min",
             "jquery": "dependencies/jquery/jquery.min",
 
-            "animate": "dependencies/angular-animate/angular-animate",
-            "aria": "dependencies/angular-aria/angular-aria",
-            "material": "dependencies/angular-material/angular-material"
+            "animate": "dependencies/angular-animate/angular-animate.min",
+            "aria": "dependencies/angular-aria/angular-aria.min",
+            "material": "dependencies/angular-material/angular-material.min"
         },
         shim:
         {

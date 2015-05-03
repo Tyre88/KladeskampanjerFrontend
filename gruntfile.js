@@ -17,8 +17,8 @@ module.exports = function (grunt)
 	[
 	  "clean:all",
 	  "copy",
-	  "sass"
-	  //"htmlmin",
+	  "sass",
+	  "htmlmin"
 	  //"uglify"
 	]);
 
