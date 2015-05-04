@@ -109,7 +109,7 @@ define(
 
 					$state.go("home");
 				}])
-				.controller('home', ["$scope", "productService", function($scope, productService)
+				.controller('home', ["$scope", "$mdToast", "productService", function($scope, $mdToast, productService)
 				{
 					$scope.$parent.SelectedIndex = 0;
 
@@ -124,6 +124,30 @@ define(
 					productService.GetRandom(GenderType.Man).success(function(response)
 					{
 						$scope.Man = response;
+					});
+
+					$scope.ShowVoucher = function(voucher)
+					{
+						$mdToast.show(
+							$mdToast.simple()
+								.content(voucher.ShopName + ': ' + voucher.Text)
+								.action('Till butik')
+								.highlightAction(false)
+								.position('bottom left')
+								.hideDelay(5000)
+						)
+							.then(function()
+							{
+								window.open(voucher.Link, '_blank');
+							});
+					};
+
+					productService.GetVoucher("all").success(function(response)
+					{
+						for(var i = 0; i < response.length; i++)
+						{
+							setTimeout($scope.ShowVoucher, i * 5000, response[i]);
+						}
 					});
 				}])
 				.controller('information', ["$scope", "$http", "$mdToast", function($scope, $http, $mdToast)
