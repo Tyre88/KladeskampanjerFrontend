@@ -25,13 +25,13 @@ define(
 						})
 						.state('woman',
 						{
-							url: "/kvinna",
+							url: "/kvinna/:shop",
 							templateUrl: "views/products.html",
 							controller: "products"
 						})
 						.state('man',
 						{
-							url: "/man",
+							url: "/man/:shop",
 							templateUrl: "views/products.html",
 							controller: "products"
 						})

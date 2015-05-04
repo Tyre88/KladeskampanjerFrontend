@@ -98,7 +98,12 @@ define(
 			this.GetProduct = function(id)
 			{
 				return $http.get('http://new.kladeskampanjer.se/api/products/getproduct/' + id);
-			}
+			};
+
+			this.GetVoucher = function(shop)
+			{
+				return $http.get('http://new.kladeskampanjer.se/api/voucher/get/' + shop);
+			};
 		}]);
 	}
 );

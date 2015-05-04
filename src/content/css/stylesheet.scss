@@ -333,6 +333,8 @@ product
 	.single-product-image
 	{
 		border-radius: 10px;
+		max-width: 50%;
+		max-height: 300px;
 
 		@media screen and (max-width: $break-mobile)
 		{

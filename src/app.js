@@ -161,11 +161,44 @@ define(
 						}
 					};
 				}])
-				.controller('products', ["$scope", "$state", "$q", "productService", function($scope, $state, $q, productService)
+				.controller('products', ["$scope", "$state", "$q", "$mdToast", "productService", function($scope, $state, $q, $mdToast, productService)
 				{
 					$scope.Gender = GenderType.Woman;
 					$scope.Products = [];
 					$scope.Page = 1;
+
+					if($state.params["shop"] != "")
+						$scope.$parent.SelectedShop = $state.params["shop"];
+
+					$scope.ShowToast = function(content, url)
+					{
+						$mdToast.show(
+							$mdToast.simple()
+								.content(content)
+								.action('Till butik')
+								.highlightAction(false)
+								.position('bottom left')
+								.hideDelay(10000)
+						)
+							.then(function()
+							{
+								window.open(url, '_blank');
+							});
+					};
+
+					if($state.params["shop"] != "")
+					{
+						productService.GetVoucher($state.params["shop"]).success(function(data)
+						{
+							if(data.length > 0)
+							{
+								for(var i = 0; i < data.length; i++)
+								{
+									$scope.ShowToast(data[i].Text, data[i].Link);
+								}
+							}
+						});
+					}
 
 					$scope.$watch('$parent.SaleOnly', function(newValue, oldValue)
 					{
@@ -184,6 +217,17 @@ define(
 							$scope.Page = 1;
 							$scope.Products = [];
 							$scope.LoadProducts();
+
+							productService.GetVoucher(newValue).success(function(data)
+							{
+								if(data.length > 0)
+								{
+									for(var i = 0; i < data.length; i++)
+									{
+										$scope.ShowToast(data[i].Text, data[i].Link);
+									}
+								}
+							});
 						}
 					});
 
