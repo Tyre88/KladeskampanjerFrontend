@@ -105,6 +105,16 @@ module.exports = function (grunt)
 			{
 				files: ["<%= config.src %>/**/*.js"],
 				tasks: ["newer:copy:scripts"]
+			},
+			xml:
+			{
+				files: ["<%= config.src %>/**/*.xml"],
+				tasks: ["newer:copy:xml"]
+			},
+			txt:
+			{
+				files: ["<%= config.src %>/**/*.txt"],
+				tasks: ["newer:copy:txt"]
 			}
 		},
 		htmlmin:
@@ -243,6 +253,30 @@ module.exports = function (grunt)
 							expand: true,
 							cwd: "<%= config.src %>",
 							src: "**/*.map",
+							dest: "<%= config.dist %>"
+						}
+					]
+			},
+			xml:
+			{
+				files:
+					[
+						{
+							expand: true,
+							cwd: "<%= config.src %>",
+							src: "**/*.xml",
+							dest: "<%= config.dist %>"
+						}
+					]
+			},
+			txt:
+			{
+				files:
+					[
+						{
+							expand: true,
+							cwd: "<%= config.src %>",
+							src: "**/*.txt",
 							dest: "<%= config.dist %>"
 						}
 					]

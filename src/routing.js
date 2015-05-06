@@ -29,9 +29,21 @@ define(
 							templateUrl: "views/products.html",
 							controller: "products"
 						})
+						.state('woman-category',
+						{
+							url:"/kvinna/:shop/kategori/:category",
+							templateUrl: "views/products.html",
+							controller: "products"
+						})
 						.state('man',
 						{
 							url: "/man/:shop",
+							templateUrl: "views/products.html",
+							controller: "products"
+						})
+						.state('man-category',
+						{
+							url:"/man/:shop/kategori/:category",
 							templateUrl: "views/products.html",
 							controller: "products"
 						})

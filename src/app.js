@@ -30,13 +30,15 @@ define(
 		}
 		catch(err)
 		{
-			return angular.module('kladeskampanjer', ['ng', 'ui.router', 'ui.bootstrap', 'ngMaterial'])
-                .config(function($mdThemingProvider)
+			return angular.module('kladeskampanjer', ['ng', 'ui.router', 'ui.bootstrap', 'ngMaterial', 'analytics'])
+                .config(["$mdThemingProvider", "$locationProvider",function($mdThemingProvider, $location)
                 {
                     $mdThemingProvider.theme('default')
                         .primaryPalette('pink')
                         .accentPalette('orange');
-                })
+
+					$location.hashPrefix('!');
+                }])
 				.directive('whenScrolled', [function()
 				{
 					return {
@@ -67,7 +69,7 @@ define(
 						}
 					};
 				}])
-				.controller('index', ["$scope", "$state", "productService", "wishlistService", function($scope, $state, productService, wishlistService)
+				.controller('index', ["$scope", "$state", "productService", "wishlistService", "analytics", function($scope, $state, productService, wishlistService, analytics)
 				{
 					$scope.SelectedIndex = 0;
 					$scope.SaleOnly = false;
@@ -191,8 +193,11 @@ define(
 					$scope.Products = [];
 					$scope.Page = 1;
 
-					if($state.params["shop"] != "")
+					if($state.params["shop"] != undefined && $state.params["shop"] != "")
 						$scope.$parent.SelectedShop = $state.params["shop"];
+
+					if($state.params["category"] != undefined && $state.params["category"] != "")
+						$scope.$parent.SelectedCategory = $state.params["category"];
 
 					$scope.ShowToast = function(content, url)
 					{
@@ -238,20 +243,21 @@ define(
 					{
 						if(newValue != oldValue)
 						{
-							$scope.Page = 1;
-							$scope.Products = [];
-							$scope.LoadProducts();
-
-							productService.GetVoucher(newValue).success(function(data)
+							switch ($state.current.name)
 							{
-								if(data.length > 0)
-								{
-									for(var i = 0; i < data.length; i++)
-									{
-										$scope.ShowToast(data[i].Text, data[i].Link);
-									}
-								}
-							});
+								case "woman":
+									$state.go("woman-category", {shop: newValue, category: $scope.$parent.SelectedCategory});
+									break;
+								case "woman-category":
+									$state.go("woman-category", {shop: newValue, category: $scope.$parent.SelectedCategory});
+									break;
+								case "man":
+									$state.go("man-category", {shop: newValue, category: $scope.$parent.SelectedCategory});
+									break;
+								case "man-category":
+									$state.go("man-category", {shop: newValue, category: $scope.$parent.SelectedCategory});
+									break;
+							}
 						}
 					});
 
@@ -259,9 +265,22 @@ define(
 					{
 						if(newValue != oldValue)
 						{
-							$scope.Page = 1;
-							$scope.Products = [];
-							$scope.LoadProducts();
+							switch ($state.current.name)
+							{
+								case "woman":
+									$state.go("woman-category", {shop: $scope.$parent.SelectedShop, category: newValue});
+									break;
+								case "woman-category":
+									$state.go("woman-category", {shop: $scope.$parent.SelectedShop, category: newValue});
+									break;
+								case "man":
+									$state.go("man-category", {shop: $scope.$parent.SelectedShop, category: newValue});
+									break;
+								case "man-category":
+									$state.go("man-category", {shop: $scope.$parent.SelectedShop, category: newValue});
+									break;
+							}
+
 						}
 					});
 
@@ -271,7 +290,15 @@ define(
 							$scope.$parent.SelectedIndex = 2;
 							$scope.Gender = GenderType.Woman;
 							break;
+						case "woman-category":
+							$scope.$parent.SelectedIndex = 2;
+							$scope.Gender = GenderType.Woman;
+							break;
 						case "man":
+							$scope.$parent.SelectedIndex = 3;
+							$scope.Gender = GenderType.Man;
+							break;
+						case "man-category":
 							$scope.$parent.SelectedIndex = 3;
 							$scope.Gender = GenderType.Man;
 							break;

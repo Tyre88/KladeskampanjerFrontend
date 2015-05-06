@@ -11,13 +11,14 @@ var require =
 
             "animate": "dependencies/angular-animate/angular-animate.min",
             "aria": "dependencies/angular-aria/angular-aria.min",
-            "material": "dependencies/angular-material/angular-material.min"
+            "material": "dependencies/angular-material/angular-material.min",
+            "analytics": "dependencies/angular-analytics/angular-analytics"
         },
         shim:
         {
             "app":
             {
-                deps: ["ui-router", "ui-bootstrap", "material"]
+                deps: ["ui-router", "ui-bootstrap", "material", "analytics"]
             },
             "ui-router":
             {
@@ -41,6 +42,10 @@ var require =
                 deps: ["angular"]
             },
             "animate":
+            {
+                deps: ["angular"]
+            },
+            "analytics":
             {
                 deps: ["angular"]
             }

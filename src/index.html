@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="fragment" content="!"/>
 
         <!-- FB META -->
         <meta property="og:locale" content="sv_SE" />
@@ -16,36 +17,11 @@
         <meta property="og:description" content="Samling av billiga kläder på nätet. Vårt mål är att det är hit du ska gå när du vill shoppa billiga och snygga kläder." />
         <!-- END FB META -->
 
-
+    <title>Klädeskampanjer - Billiga kläder på ett ställe</title>
     </head>
     <body ng-controller="index" class="md-default-theme">
 
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '900972389960054',
-                xfbml      : true,
-                version    : 'v2.3'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&appId=597242886974329&version=v2.0";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+        <div id="fb-root"></div>
 
         <md-sidenav md-is-open="IsMenuOpen" class="md-sidenav-left navigation" md-is-locked-open="$mdMedia('gt-md')">
             <md-content class="md-padding">
@@ -109,8 +85,8 @@
     <link rel="stylesheet" href="content/css/stylesheet.css" />
     <link rel="stylesheet" href="content/css/font-awesome.min.css" />
 
-    <script src="dependencies/dependencyconfig.js"></script>
-    <script src="dependencies/require/require.min.js" data-main="bootstrap.js"></script>
+    <script src="dependencies/dependencyconfig.js?v=0.1.4"></script>
+    <script src="dependencies/require/require.min.js" data-main="bootstrap.js?v=0.1.4"></script>
 
 
     <script>
@@ -123,4 +99,30 @@
         ga('send', 'pageview');
 
     </script>
+
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '900972389960054',
+                xfbml      : true,
+                version    : 'v2.3'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&appId=597242886974329&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 </html>
