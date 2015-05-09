@@ -20,6 +20,11 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>http://klädeskampanjer.se/#!/rabattkoder</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
         <loc>http://klädeskampanjer.se/#!/kvinna/nelly</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>

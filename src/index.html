@@ -60,7 +60,7 @@
                     <span class="fa fa-bars button"></span>
                 </md-button>
             </div>
-
+            <!--<md-progress-linear class="md-primary" md-mode="determinate" value="{{PercentLoaded}}"></md-progress-linear>-->
             <h1>
                 Klädeskampanjer
             </h1>
@@ -73,6 +73,7 @@
                         <md-tab><a ui-sref="woman">Kvinna</a></md-tab>
                         <md-tab><a ui-sref="man">Man</a></md-tab>
                         <md-tab><a ng-click="GoToWishlist()">Önskelista</a></md-tab>
+                        <md-tab><a ui-sref="vouchercodes">Rabattkoder</a></md-tab>
                     </md-tabs>
                 </div>
             </md-toolbar>
@@ -84,8 +85,8 @@
     <link rel="stylesheet" href="content/css/stylesheet.css" />
     <link rel="stylesheet" href="content/css/font-awesome.min.css" />
 
-    <script src="dependencies/dependencyconfig.js?v=0.1.4"></script>
-    <script src="dependencies/require/require.min.js" data-main="bootstrap.js?v=0.1.4"></script>
+    <script src="dependencies/dependencyconfig.js?v=0.1.5"></script>
+    <script src="dependencies/require/require.min.js" data-main="bootstrap.js?v=0.1.5"></script>
 
 
     <script>

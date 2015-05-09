@@ -1,5 +1,5 @@
 require.config({
-    urlArgs: "v=0.1.4"
+    urlArgs: "v=0.1.5"
 });
 
 require(

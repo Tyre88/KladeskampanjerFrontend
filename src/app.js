@@ -69,8 +69,12 @@ define(
 						}
 					};
 				}])
-				.controller('index', ["$scope", "$state", "productService", "wishlistService", "analytics", function($scope, $state, productService, wishlistService, analytics)
+				.controller('index', ["$scope", "$rootScope", "$state", "productService", "wishlistService", "analytics", function($scope, $rootScope, $state, productService, wishlistService, analytics)
 				{
+					$rootScope.RequestAmount = 0;
+					$rootScope.RequestDone = 0;
+					$scope.PercentLoaded = 0;
+
 					$scope.SelectedIndex = 0;
 					$scope.SaleOnly = false;
 					$scope.Shops = [];
@@ -109,9 +113,24 @@ define(
 						}
 					});
 
+					$rootScope.$watch("RequestDone", function(newVal, oldVal)
+					{
+						if(newVal >= $rootScope.RequestAmount && newVal != oldVal)
+						{
+							$rootScope.RequestAmount = 0;
+							$rootScope.RequestDone = 0;
+							$scope.PercentLoaded = 100;
+							console.log('done');
+						}
+						else if(newVal != oldVal)
+						{
+							$scope.PercentLoaded = ($rootScope.RequestDone / $rootScope.RequestAmount) * 100;
+						}
+					});
+
 					$state.go("home");
 				}])
-				.controller('home', ["$scope", "$mdToast", "productService", function($scope, $mdToast, productService)
+				.controller('home', ["$scope", "$state", "$mdToast", "productService", function($scope, $state, $mdToast, productService)
 				{
 					$scope.$parent.SelectedIndex = 0;
 
@@ -133,7 +152,7 @@ define(
 						$mdToast.show(
 							$mdToast.simple()
 								.content(voucher.ShopName + ': ' + voucher.Text)
-								.action('Till butik')
+								.action('Till rabattkoder')
 								.highlightAction(false)
 								.position('bottom left')
 								.hideDelay(5000)
@@ -146,9 +165,20 @@ define(
 
 					productService.GetVoucher("all").success(function(response)
 					{
-						for(var i = 0; i < response.length; i++)
+						if(response.length > 0)
 						{
-							setTimeout($scope.ShowVoucher, i * 5000, response[i]);
+							$mdToast.show(
+								$mdToast.simple()
+									.content(response.length + ' Rabattkoder aktiva!')
+									.action('Till rabattkoder')
+									.highlightAction(false)
+									.position('bottom left')
+									.hideDelay(7500)
+							)
+							.then(function()
+							{
+								$state.go("vouchercodes");
+							});
 						}
 					});
 				}])
@@ -376,7 +406,7 @@ define(
 					{
 						FB.ui({
 							method: 'feed',
-							link: 'http://klädeskampanjer.se/#/product/' + $scope.Product.ID,
+							link: 'http://klädeskampanjer.se/#!/product/' + $scope.Product.ID,
 							caption: $scope.Product.Name,
 							picture: $scope.Product.ImgURL,
 							description: $scope.Product.Description,
@@ -404,7 +434,7 @@ define(
 					{
 						FB.ui({
 							method: 'feed',
-							link: 'http://klädeskampanjer.se/#/wishlist/' + $scope.Wishlist.GUID,
+							link: 'http://klädeskampanjer.se/#!/wishlist/' + $scope.Wishlist.GUID,
 							caption: 'Min önskelista',
 							picture: 'http://kladeskampanjer.se/content/images/wishlist.png',
 							description: 'Kolla in min önskelista på klädeskampanjer.se!',
@@ -453,7 +483,7 @@ define(
 					{
 						FB.ui({
 							method: 'feed',
-							link: 'http://klädeskampanjer.se/#/product/' + productService.ActiveProduct.ID,
+							link: 'http://klädeskampanjer.se/#!/product/' + productService.ActiveProduct.ID,
 							caption: productService.ActiveProduct.Name,
 							picture: productService.ActiveProduct.ImgURL,
 							description: productService.ActiveProduct.Description,
@@ -461,11 +491,49 @@ define(
 						}, function(response){});
 					};
 				}])
+				.controller('vouchercodes', ["$scope", "productService", function($scope, productService)
+				{
+					$scope.$parent.SelectedIndex = 5;
+
+					$scope.Vouchers = [];
+
+					$scope.GoToVoucher = function(url)
+					{
+						window.open(url, '_blank');
+					};
+
+					productService.GetVoucher("all").success(function(response)
+					{
+						$scope.Vouchers = response;
+					});
+				}])
+				.factory('authHttpResponseInterceptor', ['$q', '$rootScope', function($q, $rootScope){
+					return {
+						'request': function(request)
+						{
+							$rootScope.RequestAmount++;
+							//TODO(Victor): Add loading handling here - We can't provide the scope though.?
+							return request;
+						},
+						'response': function(response) {
+							$rootScope.RequestDone++;
+
+							//This is for 200 status codes
+							return response || $q.when(response);
+						},
+						'responseError': function(rejection) {
+							console.log(String.format("Response Error {0}", rejection.status), rejection);
+
+							return $q.reject(rejection);
+						}
+					}
+				}])
 				.config([
 					"$compileProvider",
 					"$httpProvider",
 					function($compileProvider, $httpProvider)
 					{
+						$httpProvider.interceptors.push('authHttpResponseInterceptor');
 						$compileProvider.debugInfoEnabled(false);
 						$httpProvider.useApplyAsync(true);
 					}

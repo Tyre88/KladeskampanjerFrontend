@@ -67,6 +67,32 @@ md-select
   	margin-top: 10px;
 }
 
+md-grid-tile
+{
+	background-color: #FCE4EC;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+	transition: all 400ms ease-out 50ms;
+
+	&:hover
+	{
+		cursor: pointer;
+	}
+
+	figure
+	{
+		flex-direction: column;
+
+		div,
+		h3
+		{
+			margin: 5px 10px;
+		}
+	}
+}
+
 product
 {
 	border: 1px dotted #f8bbd0;

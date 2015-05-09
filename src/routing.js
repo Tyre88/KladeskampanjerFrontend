@@ -58,6 +58,12 @@ define(
 							url: '/product/:id',
 							templateUrl: "views/single-product.html",
 							controller: "show-product"
+						})
+						.state('vouchercodes',
+						{
+							url: "/rabattkoder",
+							templateUrl: "views/vouchercodes.html",
+							controller: "vouchercodes"
 						});
                 }
 			]
