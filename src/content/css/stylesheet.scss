@@ -410,3 +410,20 @@ md-list.bottom-sheet-list
 	display: flex !important;
 	flex-wrap: nowrap !important;
 }
+
+.header
+{
+	text-align: left;
+
+	@media screen and (max-width: $break-mobile)
+	{
+		text-align: center;
+		margin: 5px 0 0 0;
+		padding: 0;
+		
+		img
+		{
+			max-height: 70px;
+		}
+	}
+}
