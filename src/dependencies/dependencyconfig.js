@@ -2,6 +2,7 @@ var require =
     {
         paths:
         {
+            "extensions": "dependencies/extensions",
             "angular": "dependencies/angular/angular.min",
             "ui-router": "dependencies/angular-ui-router/release/angular-ui-router.min",
             "app": "app",
@@ -18,7 +19,7 @@ var require =
         {
             "app":
             {
-                deps: ["ui-router", "ui-bootstrap", "material", "analytics"]
+                deps: ["ui-router", "ui-bootstrap", "material", "analytics", "extensions"]
             },
             "ui-router":
             {

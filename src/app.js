@@ -16,6 +16,10 @@ var guid = (function() {
 	};
 })();
 
+LoadCss("dependencies/angular-material/angular-material.min.css");
+LoadCss("content/css/stylesheet.css");
+LoadCss("content/css/font-awesome.min.css");
+
 define(
     [
         "angular",
