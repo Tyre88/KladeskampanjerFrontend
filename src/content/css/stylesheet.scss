@@ -104,6 +104,16 @@ product
 	text-align: center;
 	background-color: #FCE4EC;
 
+	h3
+	{
+		overflow: hidden;
+		height: 26px;
+		-ms-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		width: 90%;
+		white-space: nowrap;
+	}
+
 	@media screen and (max-width: $break-mobile)
 	{
 		width: calc(50% - 8px);
@@ -115,14 +125,6 @@ product
 		img
 		{
 			width: 100%;
-		}
-
-		h3
-		{
-			overflow: hidden;
-			height: 26px;
-			-ms-text-overflow: ellipsis;
-			text-overflow: ellipsis;
 		}
 	}
 
