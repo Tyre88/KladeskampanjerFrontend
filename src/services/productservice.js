@@ -104,6 +104,11 @@ define(
 			{
 				return $http.get('http://new.kladeskampanjer.se/api/voucher/get/' + shop);
 			};
+
+			this.InsertClickToVoucher = function(id)
+			{
+				return $http.post('http://localhost:19722/api/voucher/insertclick/', { id: id });
+			};
 		}]);
 	}
 );

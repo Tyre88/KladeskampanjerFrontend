@@ -2,7 +2,7 @@
               md-row-height-gt-md="1:1" md-row-height="2:2" md-row-height-sm="2:1"
               md-gutter="10px" md-gutter-gt-sm="8px">
 
-    <md-grid-tile ng-repeat="voucher in Vouchers" ng-click="GoToVoucher(voucher.Link)">
+    <md-grid-tile ng-repeat="voucher in Vouchers" ng-click="GoToVoucher(voucher)">
         <h3>Rabattkod för {{voucher.ShopName}}</h3>
         <div>{{voucher.Text}}</div>
     </md-grid-tile>

@@ -1,5 +1,5 @@
 require.config({
-    urlArgs: "v=0.1.5"
+    urlArgs: "v=0.1.7"
 });
 
 require(
@@ -13,8 +13,6 @@ require(
     ],
     function(angular)
     {
-        require(["domready!"], function(document)
-                {
-                    return angular.bootstrap(document, ["kladeskampanjer"]);
-                });
+        return angular.bootstrap(document, ["kladeskampanjer"]);
+
     });

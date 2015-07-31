@@ -1,3 +1,13 @@
+/*if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('sw.js', {
+		scope: '/'
+	}).then(function(reg) {
+		console.log('Yey!', reg);
+	}).catch(function(err) {
+		console.log('Boo!', err);
+	});
+}*/
+
 var GenderType =
 {
 	Woman: 0,
@@ -16,8 +26,6 @@ var guid = (function() {
 	};
 })();
 
-LoadCss("dependencies/angular-material/angular-material.min.css");
-LoadCss("content/css/stylesheet.css");
 LoadCss("content/css/font-awesome.min.css");
 
 define(
@@ -34,7 +42,7 @@ define(
 		}
 		catch(err)
 		{
-			return angular.module('kladeskampanjer', ['ng', 'ui.router', 'ui.bootstrap', 'ngMaterial', 'analytics'])
+			return angular.module('kladeskampanjer', ['ng', 'ui.router', 'ui.bootstrap', 'ngMaterial', 'analytics', 'webbdudes-loader'])
                 .config(["$mdThemingProvider", "$locationProvider",function($mdThemingProvider, $location)
                 {
                     $mdThemingProvider.theme('default')
@@ -73,7 +81,8 @@ define(
 						}
 					};
 				}])
-				.controller('index', ["$scope", "$rootScope", "$state", "productService", "wishlistService", "analytics", function($scope, $rootScope, $state, productService, wishlistService, analytics)
+				.controller('index', ["$scope", "$rootScope", "$state", "productService", "wishlistService", "analytics", "loaderService",
+									  function($scope, $rootScope, $state, productService, wishlistService, analytics, loaderService)
 				{
 					$rootScope.RequestAmount = 0;
 					$rootScope.RequestDone = 0;
@@ -88,6 +97,9 @@ define(
 					$scope.SelectedCategory = "all";
 
 					$scope.IsMenuOpen = false;
+
+					loaderService.Color = "rgb(233,30,99)";
+					loaderService.ApplyColors();
 
 					$scope.GoToWishlist = function()
 					{
@@ -117,20 +129,19 @@ define(
 						}
 					});
 
-					$rootScope.$watch("RequestDone", function(newVal, oldVal)
+					/*$rootScope.$watch("RequestDone", function(newVal, oldVal)
 					{
 						if(newVal >= $rootScope.RequestAmount && newVal != oldVal)
 						{
 							$rootScope.RequestAmount = 0;
 							$rootScope.RequestDone = 0;
 							$scope.PercentLoaded = 100;
-							console.log('done');
 						}
 						else if(newVal != oldVal)
 						{
 							$scope.PercentLoaded = ($rootScope.RequestDone / $rootScope.RequestAmount) * 100;
 						}
-					});
+					});*/
 
 					$state.go("home");
 				}])
@@ -501,9 +512,10 @@ define(
 
 					$scope.Vouchers = [];
 
-					$scope.GoToVoucher = function(url)
+					$scope.GoToVoucher = function(voucher)
 					{
-						window.open(url, '_blank');
+						productService.InsertClickToVoucher(voucher.ID);
+						window.open(voucher.Link, '_blank');
 					};
 
 					productService.GetVoucher("all").success(function(response)
@@ -511,23 +523,24 @@ define(
 						$scope.Vouchers = response;
 					});
 				}])
-				.factory('authHttpResponseInterceptor', ['$q', '$rootScope', function($q, $rootScope){
+				.factory('authHttpResponseInterceptor', ['$q', '$rootScope', "loaderService", function($q, $rootScope, loaderService){
 					return {
 						'request': function(request)
 						{
 							$rootScope.RequestAmount++;
 							//TODO(Victor): Add loading handling here - We can't provide the scope though.?
+							loaderService.ShowLoading();
 							return request;
 						},
 						'response': function(response) {
 							$rootScope.RequestDone++;
-
+							loaderService.HideLoading();
 							//This is for 200 status codes
 							return response || $q.when(response);
 						},
 						'responseError': function(rejection) {
 							console.log(String.format("Response Error {0}", rejection.status), rejection);
-
+							loaderService.HideLoading();
 							return $q.reject(rejection);
 						}
 					}
